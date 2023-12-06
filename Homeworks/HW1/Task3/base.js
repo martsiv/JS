@@ -1,37 +1,92 @@
-// task 1.1
-const currentYear = 2023;
-let birthdate = null;
-let isCorrectData = false;
-
+// Task 3.1
+let leftRange, rigthRange;
 do {
-    isCorrectData = false;
-    let text = "Enter your year of birth";
-    birthdate = +prompt(text, 2000);
+    leftRange = prompt("Enter left range: ");
+} while (!checkIsNumber(leftRange));
+do {
+    rigthRange = prompt("Enter rigth range: ");
+} while (!checkIsNumber(rigthRange));
+leftRange = +leftRange;
+rigthRange = +rigthRange;
+if (Number(rigthRange) < Number(leftRange)) {
+    let tmp = rigthRange;
+    rigthRange = leftRange;
+    leftRange = tmp;
+}
+let summ = 0;
+for (let i = leftRange; i <= rigthRange; i++) {
+    summ += i;
+}
+console.log(`In the range from ${leftRange} to ${rigthRange} summ of all numbers = ${summ}`);
 
-    if (isNaN(birthdate) || birthdate <= 0 || birthdate > currentYear || 130 < (currentYear - birthdate)) {
-        alert("You must enter a valid year of birth!");
-    }
-    else {
-        isCorrectData = true;
-    }
-} while (!isCorrectData);
+// Task 3.2
+let number;
+do {
+    number = prompt("Enter any number: ");
+} while (!checkIsNumber(number));
+console.log(`Number of digits in the number ${number} is ${getNumberOfDigitsInNumber(number)}`);
 
-alert(`You are ${currentYear - birthdate} years old`);
-
-// Task 2
-const sizeFileInMB = 820;
-let sizeSDinGB;
-
-    sizeSDinGB = prompt("Enter memory size of your flash drive");
-
-    if (isNaN(sizeSDinGB) || sizeSDinGB === null) {
-        alert("We will check it next time. Good bye!");
+// Task 3.3
+let myNumber, positive = 0, negative = 0, zero = 0, even = 0, odd = 0;
+for (let i = 0; i < 10; i++) {
+    console.log(`Number ${i + 1}`);
+    do {
+        myNumber = prompt("Enter any number: ");
+    } while (!checkIsNumber(myNumber));
+    myNumber = Number(myNumber);
+    if (myNumber < 0) {
+        ++negative;
     }
-    else if (sizeSDinGB <= 0.82) {
-        alert("Unfortunately, no 820 MB file will fit on your USB flash drive");
+    if (0 < myNumber) {
+        ++positive;
     }
-    else {
-        let result = Math.trunc(sizeSDinGB * 1024 / sizeFileInMB);
-        alert(`Your flash drive will fit ${result} files of ${sizeFileInMB}MB`);
+    if (myNumber === 0) {
+        ++zero;
     }
-    
+    if ((myNumber !== 0) && (myNumber % 2 === 0)) {
+        ++even;
+    }
+    if ((myNumber !== 0) && (myNumber % 2 !== 0)) {
+        ++odd;
+    }
+}
+console.log(`There was: \n${positive} positive \n${negative} negative \n${zero} zero \n${even} even \n${odd} odd`);
+
+// Task 3.4
+let week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+let counter = 0;
+while (confirm(`Day of week: ${week[counter]} \nDo you want to see next day of week?`)){
+    ++counter;
+    if (week.length <= counter){
+        counter = 0;
+    }
+}
+
+// Functions
+function checkIsNumber(number) {
+    let result = false;
+    if (number === null) {
+        console.log("Your value is null. Enter again");
+    } else if (number === "") {
+        console.log("Your value is empty string. Enter again");
+    } else if (isNaN(number)) {
+        console.log("Your value is not a number. Enter again");
+    } else {
+        result = true;
+    }
+    return result;
+}
+
+function getNumberOfDigitsInNumber(number) {
+    if (!checkIsNumber(number)) {
+        return NaN;
+    }
+    number = String(number);
+    let result = 0;
+    for (let i = 0; i < number.length; i++) {
+        if (!isNaN(number[i])) {
+            ++result;
+        }
+    }
+    return result;
+}
