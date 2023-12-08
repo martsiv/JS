@@ -5,15 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JS-Array</title>
+    <!-- додаємо css стилі для mocha, щоб вивести результати -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+    <!-- додаємо фреймворк mocha до коду -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd'); // вмикаємо тестування у bdd стилі
+    </script>
+    <!-- додаємо chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
+    <script>
+        // chai має багато всього, давайте зробимо assert глобальним
+        let assert = chai.assert;
+    </script>
 </head>
 
 <body>
-    <h1>Title</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis eos ipsa a harum officia perferendis corrupti
-        aperiam assumenda, distinctio nemo reprehenderit vel ea? Eaque ipsa illum quae ab et optio incidunt consequatur
-        dolores aperiam voluptas? Ratione similique eveniet ducimus quisquam?</p>
-        
-        <script src="./array.js"></script>
+    <script src="./array.js"></script>
+
+    <!-- скрипт з тестами (describe, it...) -->
+    <script src="test.js"></script>
+
+    <!-- елемент з id="mocha" буде містити результати тестів -->
+    <div id="mocha"></div>
+
+    <!-- запускаємо тести! -->
+    <script>
+        mocha.run();
+    </script>
 </body>
 
 </html>
