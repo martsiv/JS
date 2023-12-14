@@ -1,118 +1,92 @@
 // Task 1
-class CssStyle {
-    constructor(property, value) {
-        this.property = property;
-        this.value = value;
-    }
-}
-class CssClass {
-    styles = [];
-    constructor(name, styles) {
-        this.name = name;
-        for (let i = 0; i < styles.length; i++) {
-            let newItem = new CssStyle(styles[i].property, styles[i].value);
-            this.styles.push(newItem);
+function displayScoups(num) {
+    let result = "";
+    let symbol = "(";
+    for (let i = 0; i < 2; i++) {
+        for (let j = 0; j < num; j++) {
+            result += symbol;
         }
+        symbol = ")";
     }
-    addCssStyle = (property, value) => {
-        if (this.styles?.find(item => item.property === property && item.value === value) === undefined) {
-            this.styles.push(new CssStyle(property, value));
-        }
-    }
-    deleteCssStyle = (property) => {
-        let index;
-        do {
-            index = this.styles.findIndex(item => item.property == property);
-            if (index !== -1) {
-                this.styles.splice(index, 1);
-            }
-        } while (index !== -1);
-    }
-    getCSS = () => {
-        let result = this.styles.reduce((str, item) => str += item.property + ": " + item.value + "; ", "")
-        return `.${this.name} { ${result} }`;
-    }
+    return result;
 }
-let arrayStyles = [new CssStyle("display", "flex"), new CssStyle("justify-content", "flex-end")];
-let myClass = new CssClass("myClass", arrayStyles);
-console.log(myClass.getCSS());
-myClass.addCssStyle("margin", 8);
-myClass.addCssStyle("padding", 5);
-myClass.addCssStyle("padding", 3);
-myClass.addCssStyle("padding", 7);
-myClass.addCssStyle("margin", 2);
-console.log(myClass.getCSS());
-myClass.deleteCssStyle("margin");
-console.log(myClass.getCSS());
+
+console.log(displayScoups(5));
 
 // Task 2
-class Button {
-    #width;
-    #height;
-    #text;
-    constructor(width, height, text) {
-        this.setWidth = width;
-        this.setHeight = height;
-        this.setText = text;
+// Реалізуйте функцію getRectangleArea(width, height), яка приймає 2 параметри ширина 
+// прямокутника width і висота прямокутника height і обраховує його площу. 
+// Передбачити припинення виконання програми і генерацію винятку у випадку, якщо функції передано не числові параметри. 
+// Напишіть код, який використовує цю функцію та обробляє можливі виняткові ситуації.
+function getRectangleArea(width, height) {
+    if (width == null || height == null || typeof width !== "number" || typeof height !== "number" || Number.isNaN(width || Number.isNaN(height))) {
+        throw new TypeError();
     }
-    get getWidth() {
-        return this.#width;
+    if (width <= 0 || height <= 0) {
+        throw new RangeError();
     }
-    get getHeight() {
-        return this.#height;
-    }
-    get getText() {
-        return this.#text;
-    }
-    set setWidth(value) {
-        this.#width = value;
-    }
-    set setHeight(value) {
-        this.#height = value;
-    }
-    set setText(value) {
-        this.#text = value;
-    }
-    showBtn = () => {
-        document.write(`<button type = "button" name = "button1" style = "width: ${this.getWidth}px; height: ${this.getHeight}px;">${this.getText}</button>`);
-    }
+    return width * height;
 }
-class BootstrapButton extends Button {
-    #color
-    constructor(width, height, text, color) {
-        super(width, height, text);
 
-        this.setColor = color;
-    }
-    get getColor() {
-        return this.#color;
-    }
-    set setColor(value) {
-        this.#color = value;
-    }
-
-    showBtn = () => {
-        super.get
-        document.write(`<button type = "button" name = "button1" style = "width: ${super.getWidth}px; height: ${super.getHeight}px; color: ${this.getColor}">${super.getText}</button>`);
-    }
+try {
+    console.log("\n\nRectangle area = " + getRectangleArea(5, 4));
 }
-let myButton = new Button(100, 50, "My BUTTON");
-myButton.showBtn();
-let newBtn = new BootstrapButton(90, 40, "New BTN", "Red");
-newBtn.showBtn();
-
+catch (error) {
+    console.log("Error name:", error.name);
+    console.log("Error message:", error.message);
+    console.log("Error stack:", error.stack);
+}
 
 // Task 3
-class ExtendedDate extends Date {
-    constructor(year, month, date, hours, minutes, seconds, ms) {
-        super(year, month, date, hours, minutes, seconds, ms);
-    }
-    static days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    static dates = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Twenty-one", "Twenty-two", "Twenty-three", "Twenty-four", "Twenty-five", "Twenty-six", "Twenty-seven", "Twenty-eight", "Twenty-nine", "Thirty", "Thirty-one"];
+// Створіть клас WeekdayError, конструктор якого приймає параметр message і ініціалізує поле name значенням WeekdayError.
+// Реалізуйте функцію showWeekdayName(day), в якій параметр day – це порядковий номер дня в тижні.
+// Функція повертає назву дня (Monday, Tuesday...) відповідно до введеного номера.
+// У випадку некоректного вводу кидається ексепшн у вигляді об’єкта класу WeekdayError з повідомленням Incorrect weekday number.
+// Напишіть код, який використовує цю функцію, передбачте обробку можливих винятків.
 
-    displayDate() {
-        console.log(ExtendedDate.dates[this.getDate()] + " " + ExtendedDate.days[this.getDay()]);
+// console.log(showWeekdayName(5));  // Friday
+// console.log(showWeekdayName(23)); // WeekdayError: Incorrect weekday number
+class WeekdayError extends Error {
+    constructor(message) {
+        super(message);
     }
 }
-let extDate = new ExtendedDate(2023, 11, 12);
-extDate.displayDate();
+
+function showWeekdayName(day) {
+    if (typeof day !== "number" || Number.isNaN(day)) {
+        throw new TypeError("Incorrect type");
+    }
+    if (day < 1 || 7 < day) {
+        throw new WeekdayError("Incorrect weekday number");
+    }
+    days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return this.days[--day];
+}
+
+try {
+    console.log(showWeekdayName("true"));
+}
+catch (error) {
+    if (error instanceof WeekdayError){
+        console.log(error.message);
+    }
+    else if (error instanceof TypeError) {
+        console.log(error.message);
+    }
+}
+
+// Task 4
+// function fibonacci() {
+//     let number = 0;
+//     return () => {
+//         if (number === 0)
+//             return 0;
+//         if (number === 1)
+//             return 1;
+//         return (number - 1) + (number - 2);
+//     }
+// }
+// let func = fibonacci();
+// for (let i = 0; i < 10; ++i) {
+//     console.log(func());
+// }
