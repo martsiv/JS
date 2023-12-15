@@ -1,4 +1,4 @@
-// Task 2
+// Task 2, 3
 class OneNews {
     _tags = [];
     constructor(title, text, date, ...tags) {
