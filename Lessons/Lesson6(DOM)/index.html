@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-DOM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Car info</h1>
+
+    <h2>Add car info</h2>
+    <form name="creationForm">
+        <div class="mt">
+            <div>
+                <span>Manufacturer:</span>
+                <select name="manufacturer">
+                    <option>Audi</option>
+                    <option>BMW</option>
+                    <option>Citroen</option>
+                    <option>Mercedes</option>
+                    <option>Pegueot</option>
+                    <option>Renault</option>
+                    <option>Volkswagen</option>
+                </select>
+            </div>
+            <label>
+                <span>Model:</span>
+                <input name="name" type="text">
+            </label>
+            <label>
+                <span>VIN code:</span>
+                <input name="vin" type="text">
+            </label>
+        </div>
+        <div class="mt">
+            <label>
+                <span>First registration:</span>
+                <input name="status" type="checkbox">
+            </label>
+        </div>
+        <div class="mt">
+            <button type="reset">Cancel</button>
+            <button id="submit-btn" type="submit">Add</button>
+        </div>
+    </form>
+
+    <h2>Find by model</h2>
+    <div>
+        <form name="searchingForm">
+            <div class="mt">
+                <label>
+                    <span>Keyword:</span>
+                    <input name="keyword" type="text">
+                </label>
+            </div>
+            <div class="mt">
+                <button id="find-btn" type="button">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <h2>Cars Catalog</h2>
+    <div>
+        <button id="clear-btn">Clear</button>
+    </div>
+
+    <table id="product-table" class="mt">
+        <thead>
+            <tr>
+                <th>№.</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>VIN Code</th>
+                <th>Registry status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Audi</td>
+                <td>TT</td>
+                <td>SDd23d823dh3Dd</td>
+                <td>First registration</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Renault</td>
+                <td>Megan</td>
+                <td>DKd209du230du</td>
+                <td>Secondary market</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script src="./dom.js"></script>
+</body>
+
+</html>
