@@ -15,7 +15,7 @@
     <form name="creationForm">
         <div class="mt">
             <div>
-                <span>Manufacturer:</span>
+                <span>Category:</span>
                 <select name="manufacturer">
                     <option>Audi</option>
                     <option>BMW</option>
@@ -25,6 +25,8 @@
                     <option>Renault</option>
                     <option>Volkswagen</option>
                 </select>
+                <span>Year:</span>
+                <input name="year" type="number">
             </div>
             <label>
                 <span>Model:</span>
@@ -53,7 +55,8 @@
             <div class="mt">
                 <label>
                     <span>Keyword:</span>
-                    <input name="keyword" type="text">
+                    <input list="keywords" name="keyword">
+                    <datalist id="keywords"></datalist>
                 </label>
             </div>
             <div class="mt">
@@ -71,27 +74,22 @@
         <thead>
             <tr>
                 <th>№.</th>
-                <th>Manufacturer</th>
+                <th>Category</th>
+                <th>Year</th>
                 <th>Model</th>
                 <th>VIN Code</th>
                 <th>Registry status</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <!-- <tr>
                 <td>1</td>
                 <td>Audi</td>
+                <td>2019</td>
                 <td>TT</td>
                 <td>SDd23d823dh3Dd</td>
                 <td>First registration</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Renault</td>
-                <td>Megan</td>
-                <td>DKd209du230du</td>
-                <td>Secondary market</td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 
