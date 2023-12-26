@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+header {
+    background-color: gray;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.left-side {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.left-side>div {
+    width: 100%;
+    height: 80%;
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0px 15px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#gameContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 5%;
+}
+
+#gameBody {
+    /* width: 100%; */
+    position: relative;
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+#gameBody img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#gameSettings {
+    width: 100%;
+}
+
+.overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(169, 169, 169, 0.7);
+    z-index: 2;
+}
+
+#overlayButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+}
+
+.gameLvlBtn {
+    border-radius: 5px;
+    color: rgb(148,160,213);
+}
+.activeBtn {
+    background-color: rgb(78,23,169);
+    color: white;
+}
