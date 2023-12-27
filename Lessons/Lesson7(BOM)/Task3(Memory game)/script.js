@@ -1,8 +1,53 @@
+let $gameBodyGrid = $("#gameBody");
+
+// Check current game level from active level selector (default min level 4 x 4).
+// Result will be summ (4x4=16)
+let currentLvl = parseInt($('.activeBtn').attr('gameLvl'));
+
+// Event for setting actual game level
+$('.gameLvlBtn').on('click', function () {
+  let gameLvlValue = $(this).attr('gameLvl');
+  currentLvl = parseInt(gameLvlValue);
+  $('.gameLvlBtn').removeClass('activeBtn');
+  $(this).addClass('activeBtn');
+});
+
+//
 $("#overlayButton").on('click', function () {
   var overlay = document.getElementById('overlay');
   overlay.style.display = (overlay.style.display === 'none' || overlay.style.display === '') ? 'block' : 'none';
+  generateGameGrid();
 });
-let $gameBodyGrid = $("#gameBody");
+
+// In depends on game level selector this function generates a game grid with the appropriate numbers of cells
+function generateGameGrid() {
+  $gameBodyGrid.children('.oneCard').remove();
+  $gameBodyGrid.attr('data-game-lvl', currentLvl);
+
+  let imagesForGame = shuffleImagePaths(imagePaths).slice(0, (currentLvl / 2)); // get random imges for game
+  imagesForGame = shuffleImagePaths(imagesForGame.concat(imagesForGame)); //each image mest be 2 times in game, shuffle images second time
+
+  let divs = [];
+  
+  for (let i = 0; i < currentLvl; i++) {
+    let placeholderDiv = document.createElement('div');
+    placeholderDiv.classList.add('oneCard');
+    $gameBodyGrid.append(placeholderDiv);
+  }
+  
+  for (let i = 0; i < currentLvl; i++) {
+    let element = document.createElement('div');
+    element.classList.add('oneCard');
+    let img = document.createElement('img');
+    let imgPath = imagesForGame.pop();
+    img.setAttribute('src', imgPath);
+
+    element.prepend(img);
+    divs.push(element);
+  }
+
+  // $gameBodyGrid.append(divs);
+}
 
 
 let imagePaths = [];
@@ -30,10 +75,19 @@ imagePaths.push('./Cards/istockphoto-502944230-612x612.jpg');
 imagePaths.push('./Cards/jack-clubs-playing-card-isolated-white-clipping-path-included-jack-clubs-playing-card-isolated-white-173562459.jpg');
 imagePaths.push('./Cards/king-of-diamonds-card-AERYA3.jpg');
 
+// Function for shuffle array
+function shuffleImagePaths(array) {
+  const shuffledArray = [...array];
+  function compareRandom() {
+      return Math.random() - 0.5;
+  }
+  shuffledArray.sort(compareRandom);
+  return shuffledArray;
+}
 
 function displayImages() {
   const images = imagePaths.map(path => `<div><img src="${path}" alt="Card Image"></div>`);
 
   $gameBodyGrid.html(images.join(''));
 }
-displayImages();
+// displayImages();
